@@ -125,6 +125,9 @@ LoginButton.addEventListener("click", (e) => {
 
           // clear form
           LoginForm.reset();
+
+          // goto home page
+          window.location.href = "home.html";
         }
       });
     })
@@ -166,6 +169,9 @@ LogoutButton.addEventListener("click", (e) => {
           document.getElementById("userEmail").style.display = "none";
 
           localStorage.removeItem("firebaseIdToken");
+          localStorage.removeItem("firebaseEmail");
+
+          window.location.href = "index.html";
         }
       });
     })
@@ -181,11 +187,12 @@ LogoutButton.addEventListener("click", (e) => {
 
 // localStorage
 function getIdToken() {
-  auth.currentUser.getIdToken(true).then((idToken) => {
-    localStorage.setItem("firebaseIdToken", idToken);
-    console.log(idToken);
-  });
-  // get email
+  // auth.currentUser.getIdToken(true).then((idToken) => {
+  //   localStorage.setItem("firebaseIdToken", idToken);
+  //   console.log(idToken);
+  // });
+  localStorage.setItem("firebaseIdToken", auth.currentUser.uid);
+  console.log(auth.currentUser.uid);
   localStorage.setItem("firebaseEmail", auth.currentUser.email);
   console.log(auth.currentUser.email);
 }
